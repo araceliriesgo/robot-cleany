@@ -1,0 +1,64 @@
+body{
+    background:black;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.face{
+    display:flex;
+    gap:80px;
+}
+
+.eye{
+
+    width:220px;
+    height:140px;
+
+    background:#00C8FF;
+
+    border-radius:70% 70% 70% 70%;
+    
+    transform:rotate(5deg);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+    0 0 20px #00C8FF,
+    0 0 60px #00C8FF;
+
+    transition:.12s;
+}
+
+.eye:last-child{
+    transform:
+        rotate(-5deg)
+        scaleX(-1);
+}
+
+
+.eye.blink{
+    height:8px;
+}
+
+.mouth{
+
+    width:40px;
+    height:4px;
+
+    margin-top:35px;
+
+    background:#00C8FF;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 0 10px #00C8FF,
+        0 0 20px #00C8FF;
+
+    opacity:.85;
+}
