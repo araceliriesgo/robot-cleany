@@ -1,48 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Cleany</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="manifest" href="manifiest.json">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
+    <meta charset="UTF-8">
 
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="black">
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes">
 
-<meta name="theme-color"
-      content="#000000">
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black">
+
+<title>Robot Cleany</title>
+
+<link
+    rel="stylesheet"
+    href="styles.css">
+
 </head>
+
 <body>
+<!-- SCREENSAVER -->
 
-<div class="face">
+<div id="screensaver">
 
-    <div class="eyes">
+    <div class="face">
 
-        <div class="eye">
-            <div class="pupil"></div>
+        <div class="eyes">
+
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+
         </div>
 
-        <div class="eye">
-            <div class="pupil"></div>
+        <div class="mouth"></div>
+
+        <div class="tap-message">
+            Tocá la pantalla para comenzar
         </div>
 
     </div>
 
-    <div class="mouth"></div>
+</div>
+
+<!-- FORMULARIO -->
+
+<div
+    id="app"
+    class="hidden">
+
+    <div class="form-container">
+
+        <h1>
+            Escribí o dictá tu email
+            <br>
+            para inicar
+        </h1>
+
+        <input
+            id="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="nombre@email.com">
+
+        <div class="voice-hint">
+            🎤 También podés usar el micrófono del teclado
+        </div>
+
+        <button
+            id="continueButton"
+            disabled>
+
+            CONTINUAR
+
+        </button>
+
+    </div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>

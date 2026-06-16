@@ -1,4 +1,140 @@
-const eyes = document.querySelectorAll(".eye");
+const screensaver =
+    document.getElementById("screensaver");
+
+const app =
+    document.getElementById("app");
+
+const emailInput =
+    document.getElementById("email");
+
+const continueButton =
+    document.getElementById("continueButton");
+
+const eyes =
+    document.querySelectorAll(".eye");
+
+let inactivityTimer;
+
+/* -------------------------- */
+/* EMAIL */
+/* -------------------------- */
+
+function validateEmail(email) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+
+}
+
+emailInput.addEventListener("input", () => {
+
+    const email =
+        emailInput.value.trim();
+
+    continueButton.disabled =
+        !validateEmail(email);
+
+    resetInactivityTimer();
+
+});
+
+continueButton.addEventListener("click", () => {
+
+    alert(
+        "Email ingresado: " +
+        emailInput.value
+    );
+
+});
+
+/* -------------------------- */
+/* TRANSICIONES */
+/* -------------------------- */
+
+function showForm() {
+
+    screensaver.classList.add("fade-out");
+
+    setTimeout(() => {
+
+        screensaver.classList.add("hidden");
+
+        app.classList.remove("hidden");
+
+        app.classList.add("fade-in");
+
+        emailInput.focus();
+
+        speak("Escribí o dictá tu email para ingresar");
+
+        resetInactivityTimer();
+
+    }, 500);
+
+}
+
+function showScreensaver() {
+
+    app.classList.add("hidden");
+
+    app.classList.remove("fade-in");
+
+    screensaver.classList.remove(
+        "hidden",
+        "fade-out"
+    );
+
+    emailInput.value = "";
+
+    continueButton.disabled = true;
+
+    clearStates();
+
+    blink();
+
+}
+
+/* -------------------------- */
+/* TIMEOUT */
+/* -------------------------- */
+
+function resetInactivityTimer() {
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+
+        showScreensaver();
+
+    }, 10000);
+
+}
+
+document.addEventListener(
+    "pointerdown",
+    () => {
+
+        if (
+            !screensaver.classList.contains(
+                "hidden"
+            )
+        ) {
+            showForm();
+        } else {
+            resetInactivityTimer();
+        }
+
+    }
+);
+
+document.addEventListener(
+    "keydown",
+    resetInactivityTimer
+);
+
+/* -------------------------- */
+/* OJOS */
+/* -------------------------- */
 
 function clearStates() {
 
@@ -18,13 +154,17 @@ function clearStates() {
 function blink() {
 
     eyes.forEach(eye => {
+
         eye.classList.add("blink");
+
     });
 
     setTimeout(() => {
 
         eyes.forEach(eye => {
+
             eye.classList.remove("blink");
+
         });
 
     }, 150);
@@ -36,7 +176,9 @@ function doubleBlink() {
     blink();
 
     setTimeout(() => {
+
         blink();
+
     }, 250);
 
 }
@@ -46,14 +188,16 @@ function lookLeft() {
     clearStates();
 
     eyes.forEach(eye => {
-        eye.classList.add("look-left");
+
+        eye.classList.add(
+            "look-left"
+        );
+
     });
 
     setTimeout(() => {
 
-        eyes.forEach(eye => {
-            eye.classList.remove("look-left");
-        });
+        clearStates();
 
     }, 1200);
 
@@ -64,14 +208,16 @@ function lookRight() {
     clearStates();
 
     eyes.forEach(eye => {
-        eye.classList.add("look-right");
+
+        eye.classList.add(
+            "look-right"
+        );
+
     });
 
     setTimeout(() => {
 
-        eyes.forEach(eye => {
-            eye.classList.remove("look-right");
-        });
+        clearStates();
 
     }, 1200);
 
@@ -82,42 +228,37 @@ function cuteEyes() {
     clearStates();
 
     eyes.forEach(eye => {
-        eye.classList.add("cute");
+
+        eye.classList.add(
+            "cute"
+        );
+
     });
 
     setTimeout(() => {
 
-        eyes.forEach(eye => {
-            eye.classList.remove("cute");
-        });
+        clearStates();
 
     }, 2000);
 
 }
 
-function lookAround() {
+function randomBehavior() {
 
-    if (Math.random() > 0.5) {
+    if (
+        screensaver.classList.contains(
+            "hidden"
+        )
+    ) {
 
-        lookLeft();
+        setTimeout(
+            randomBehavior,
+            4000
+        );
 
-    } else {
-
-        lookRight();
+        return;
 
     }
-
-    setTimeout(() => {
-
-        if (Math.random() > 0.5) {
-            blink();
-        }
-
-    }, 500);
-
-}
-
-function randomBehavior() {
 
     const random = Math.random();
 
@@ -154,3 +295,15 @@ function randomBehavior() {
 }
 
 randomBehavior();
+
+function speak(text) {
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "es-AR";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    window.speechSynthesis.speak(utterance);
+
+}
