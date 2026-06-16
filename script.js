@@ -203,7 +203,7 @@ function lookLeft() {
 
         clearStates();
 
-    }, 1200);
+    }, 1000);
 
 }
 
@@ -223,7 +223,7 @@ function lookRight() {
 
         clearStates();
 
-    }, 1200);
+    }, 1000);
 
 }
 
@@ -243,7 +243,7 @@ function cuteEyes() {
 
         clearStates();
 
-    }, 2000);
+    }, 1500);
 
 }
 
@@ -257,7 +257,7 @@ function randomBehavior() {
 
         setTimeout(
             randomBehavior,
-            4000
+            2000
         );
 
         return;
@@ -289,7 +289,7 @@ function randomBehavior() {
     }
 
     const nextAction =
-        3000 + Math.random() * 5000;
+        1500 + Math.random() * 2000;
 
     setTimeout(
         randomBehavior,
