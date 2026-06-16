@@ -24,10 +24,16 @@ html, body {
 /* =========================
    SCREENSAVER
 ========================= */
-
 #screensaver {
     width: 100vw;
     height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    inset: 0;
 }
 
 .hidden {
@@ -81,7 +87,7 @@ html, body {
     justify-content: center;
     align-items: center;
 
-    padding: 40px;
+   
     box-sizing: border-box;
 
     background: #000;
@@ -218,6 +224,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .eyes {
@@ -271,10 +278,7 @@ html, body {
    KEYBOARD FIX STATE
 ========================= */
 
-body.keyboard-open #app {
-    align-items: flex-start;
-    padding-top: 6vh;
-}
+
 
 /* =========================
    SAFE AREA FIXES
