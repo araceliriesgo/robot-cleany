@@ -60,17 +60,21 @@ function showForm() {
         screensaver.classList.add("hidden");
 
         app.classList.remove("hidden");
-
         app.classList.add("fade-in");
-
-        emailInput.focus();
 
         speak("Escribí o dictá tu email para ingresar");
 
         resetInactivityTimer();
 
-    }, 500);
+        setTimeout(() => {
 
+            emailInput.focus({ preventScroll: true });
+
+            window.scrollTo(0, 0);
+
+        }, 150);
+
+    }, 500);
 }
 
 function showScreensaver() {
