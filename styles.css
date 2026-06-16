@@ -1,92 +1,163 @@
-body{
-    background:black;
-    height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.face{
-    display:flex;
-    gap:80px;
-}
-
-
-.eye{
-
-    width:360px;
-    height:240px;
-
-    background:#00C8FF;
-
-    border-radius:70% 70% 70% 70%;
-    
-    transform:rotate(5deg);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    box-shadow:
-    0 0 20px #00C8FF,
-    0 0 60px #00C8FF;
-
-    transition:.12s;
-}
-
-.eye:last-child{
-    transform:
-        rotate(-5deg)
-        scaleX(-1);
-}
-
-
-.eye.blink{
-    height:8px;
-}
-
-.mouth{
-
-    width:40px;
-    height:4px;
-
-    margin-top:35px;
-
-    background:#00C8FF;
-
-    border-radius:10px;
-
-    box-shadow:
-        0 0 10px #00C8FF,
-        0 0 20px #00C8FF;
-
-    opacity:.85;
-}
-
 html,
 body {
 
-    width:100%;
-    height:100%;
+    margin: 0;
+    padding: 0;
 
-    overflow:hidden;
+    width: 100%;
+    height: 100%;
 
-    touch-action:none;
+    overflow: hidden;
 
-    user-select:none;
+    background: #000;
 
-    -webkit-user-select:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background:black;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-body{
+.face {
 
-    position:fixed;
-    inset:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.eyes {
+
+    display: flex;
+    gap: 120px;
+}
+
+/* OJO NORMAL */
+
+.eye {
+
+    width: 220px;
+    height: 210px;
+
+    background: #00c8ff;
+
+    border-radius: 999px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        width .5s ease,
+        height .5s ease,
+        transform .5s ease,
+        border-radius .5s ease;
+}
+
+/* PUPILA */
+
+.pupil {
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background: #000;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        left .4s ease,
+        width .4s ease,
+        height .4s ease;
+}
+
+/* PARPADEO */
+
+.eye.blink {
+
+    height: 10px;
+}
+
+/* MIRA IZQUIERDA */
+
+.eye.look-left {
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    transform: translateX(-20px);
+}
+
+.eye.look-left .pupil {
+
+    left: 35%;
+
+    width: 80px;
+    height: 80px;
+}
+
+/* MIRA DERECHA */
+
+.eye.look-right {
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    transform: translateX(20px);
+}
+
+.eye.look-right .pupil {
+
+    left: 65%;
+
+    width: 80px;
+    height: 80px;
+}
+
+/* OJOS TIERNOS */
+
+.eye.cute {
+
+    width: 210px;
+    height: 210px;
+
+    border-radius: 50%;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 5px #00c8ff,
+        0 0 3px #00c8ff,
+        0 0 6px rgba(0,200,255,.9);
+}
+
+.eye.cute .pupil {
+
+    width: 20px;
+    height: 20px;
+}
+
+/* BOCA */
+
+.mouth {
+
+    margin-top: 20px;
+
+    width: 120px;
+    height: 40px;
+
+    border-bottom: 8px solid #00c8ff;
+
+    border-radius: 0 0 20px 20px;
 }
