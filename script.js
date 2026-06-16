@@ -1,31 +1,156 @@
-const eyes =
-    document.querySelectorAll(".eye");
+const eyes = document.querySelectorAll(".eye");
 
-function blink(){
+function clearStates() {
 
-    eyes.forEach(eye=>{
+    eyes.forEach(eye => {
+
+        eye.classList.remove(
+            "blink",
+            "look-left",
+            "look-right",
+            "cute"
+        );
+
+    });
+
+}
+
+function blink() {
+
+    eyes.forEach(eye => {
         eye.classList.add("blink");
     });
 
-    setTimeout(()=>{
-        eyes.forEach(eye=>{
+    setTimeout(() => {
+
+        eyes.forEach(eye => {
             eye.classList.remove("blink");
         });
-    },120);
+
+    }, 150);
+
 }
 
-function loop(){
+function doubleBlink() {
 
-    const delay =
-        3000 + Math.random()*4000;
+    blink();
 
-    setTimeout(()=>{
+    setTimeout(() => {
+        blink();
+    }, 250);
+
+}
+
+function lookLeft() {
+
+    clearStates();
+
+    eyes.forEach(eye => {
+        eye.classList.add("look-left");
+    });
+
+    setTimeout(() => {
+
+        eyes.forEach(eye => {
+            eye.classList.remove("look-left");
+        });
+
+    }, 1200);
+
+}
+
+function lookRight() {
+
+    clearStates();
+
+    eyes.forEach(eye => {
+        eye.classList.add("look-right");
+    });
+
+    setTimeout(() => {
+
+        eyes.forEach(eye => {
+            eye.classList.remove("look-right");
+        });
+
+    }, 1200);
+
+}
+
+function cuteEyes() {
+
+    clearStates();
+
+    eyes.forEach(eye => {
+        eye.classList.add("cute");
+    });
+
+    setTimeout(() => {
+
+        eyes.forEach(eye => {
+            eye.classList.remove("cute");
+        });
+
+    }, 2000);
+
+}
+
+function lookAround() {
+
+    if (Math.random() > 0.5) {
+
+        lookLeft();
+
+    } else {
+
+        lookRight();
+
+    }
+
+    setTimeout(() => {
+
+        if (Math.random() > 0.5) {
+            blink();
+        }
+
+    }, 500);
+
+}
+
+function randomBehavior() {
+
+    const random = Math.random();
+
+    if (random < 0.55) {
 
         blink();
 
-        loop();
+    } else if (random < 0.65) {
 
-    },delay);
+        doubleBlink();
+
+    } else if (random < 0.82) {
+
+        lookLeft();
+
+    } else if (random < 0.95) {
+
+        lookRight();
+
+    } else {
+
+        cuteEyes();
+
+    }
+
+    const nextAction =
+        3000 + Math.random() * 5000;
+
+    setTimeout(
+        randomBehavior,
+        nextAction
+    );
+
 }
 
-loop();
+randomBehavior();
